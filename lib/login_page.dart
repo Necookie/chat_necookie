@@ -28,10 +28,13 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text.trim(),
         password: passwordController.text,
       );
+      debugPrint('Login response: user=${response.user}, session=${response.session}');
+
       if (response.user != null) {
+        debugPrint('User logged in with id: ${response.user!.id}');
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Login successful!')),
+            SnackBar(content: Text('Login successful! User ID: ${response.user!.id}')),
           );
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (_) => const HomePage()),
@@ -42,11 +45,13 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           error = "Login failed. Please try again.";
         });
+        debugPrint('Login failed, user is null');
       }
     } on AuthException catch (e) {
       setState(() {
         error = e.message;
       });
+      debugPrint('Login error: ${e.message}');
     } finally {
       setState(() {
         loading = false;

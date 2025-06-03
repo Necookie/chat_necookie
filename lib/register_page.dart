@@ -41,7 +41,10 @@ class _RegisterPageState extends State<RegisterPage> {
         password: passwordController.text,
       );
       final user = authResponse.user;
+      debugPrint('Register response: user=${authResponse.user}, session=${authResponse.session}'); // Debug print
+
       if (user != null) {
+        debugPrint('User registered with id: ${user.id}'); // Debug print
         await Supabase.instance.client.from('profiles').insert({
           'id': user.id,
           'full_name': fullNameController.text.trim(),
@@ -52,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
         });
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Registration successful! Logging you in...')),
+            SnackBar(content: Text('Registration successful! User ID: ${user.id}')),
           );
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (_) => const HomePage()),
@@ -63,11 +66,13 @@ class _RegisterPageState extends State<RegisterPage> {
         setState(() {
           error = "Registration failed. Please try again.";
         });
+        debugPrint('Registration failed, user is null'); // Debug print
       }
     } on AuthException catch (e) {
       setState(() {
         error = e.message;
       });
+      debugPrint('Registration error: ${e.message}'); // Debug print
     } finally {
       setState(() {
         loading = false;
