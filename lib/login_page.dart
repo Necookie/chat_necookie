@@ -93,13 +93,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               TextField(
                 controller: emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Email',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                  prefixIcon: Icon(Icons.email_outlined, color: Colors.white54),
                 ),
-                keyboardType: TextInputType.emailAddress,
+                style: const TextStyle(color: Colors.white),
               ),
               const SizedBox(height: 16),
               TextField(

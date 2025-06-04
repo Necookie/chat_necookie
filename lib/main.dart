@@ -22,9 +22,45 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Supabase Auth',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.light, // <-- Light mode
+        ),
+        useMaterial3: true,
+        fontFamily: 'Roboto',
+        scaffoldBackgroundColor: Colors.white, // Light background
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: true,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.grey[100],
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+          hintStyle: const TextStyle(color: Colors.black54),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.deepPurpleAccent,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            textStyle: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: Colors.black),
+          bodyLarge: TextStyle(color: Colors.black),
+          titleLarge: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
       ),
       home: const LoginPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -134,13 +134,11 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 16),
               TextField(
                 controller: emailController,
-                decoration: InputDecoration(
-                  hintText: 'Email Address',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                decoration: const InputDecoration(
+                  hintText: 'Email',
+                  prefixIcon: Icon(Icons.email_outlined, color: Colors.white54),
                 ),
-                keyboardType: TextInputType.emailAddress,
+                style: const TextStyle(color: Colors.white),
               ),
               const SizedBox(height: 16),
               TextField(

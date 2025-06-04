@@ -77,6 +77,17 @@ class HomePage extends StatelessWidget {
                       "Select a conversation or start a new one.",
                       style: TextStyle(color: Colors.grey, fontSize: 16),
                     ),
+                    const SizedBox(height: 24),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          hintText: 'Email',
+                          prefixIcon: Icon(Icons.email_outlined, color: Colors.white54),
+                        ),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
               ),
